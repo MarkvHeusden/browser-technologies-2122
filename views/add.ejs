@@ -1,0 +1,33 @@
+<%- include('./partials/head') %>
+<body>
+    <%- include('./partials/nav.ejs') %>
+    <header>
+        <h1>Poll toevoegen</h1>
+    </header>
+    <main>
+        <form action="">
+            <fieldset>
+                <label for="">Titel</label>
+                <input type="text" name="poll-title" id="" placeholder="Type je vraag hier" />
+            </fieldset>
+            <fieldset>
+                <label for="">Antwoorden</label>
+                <ul>
+                    <li>
+                        <input type="text" name="poll-answer" id="" />
+                    </li>
+                    <li>
+                        <input type="text" name="poll-answer" id="" />
+                    </li>
+                </ul>
+                <button>Extra antwoord</button>
+            </fieldset>
+            <label><input type="checkbox" name="" id="" />Meerdere antwoorden mogelijk?</label>
+            <div class="submit-buttons">
+                <button type="submit">Sla concept op</button>
+                <button type="submit">Maak aan</button>
+            </div>
+        </form>
+    </main>
+</body>
+<%- include('./partials/foot') %>

@@ -1,0 +1,249 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+h1,
+.list-heading {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.list-heading {
+    margin-top: 1.5rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+body {
+    /* font-family: 'Inter', sans-serif; */
+    font-size: 16px;
+    background-color: #ffffff;
+    color: #282e3d;
+    overflow-x: hidden;
+}
+
+/* .wrapper {
+    padding: 0 1.5rem;
+} */
+
+.nav-bar {
+    background-color: #ffffff;
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    height: 5rem;
+    font-weight: 500;
+}
+
+.nav-bar ul {
+    /* list-style-type: none; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.nav-logo {
+    display: none;
+}
+
+.nav-item {
+    width: 100%;
+}
+
+.nav-bar a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5rem;
+    transition: 0.3s;
+}
+
+.nav-item a:hover,
+.nav-item-active a {
+    color: #3d7afe;
+}
+
+.nav-item a:hover .nav-icon *,
+.nav-item-active a .nav-icon * {
+    fill: #3d7afe;
+}
+
+.nav-item svg {
+    width: 1.5rem;
+}
+
+.nav-item svg * {
+    transition: 0.3s;
+}
+
+.nav-item span {
+    display: none;
+    margin-left: 1rem;
+}
+
+header {
+    padding: 1.5rem 1.5rem 0;
+}
+
+main {
+    padding: 0 1.5rem;
+    margin-bottom: 4rem;
+}
+
+.horizontal-content {
+    padding-right: 0;
+}
+
+.search-bar {
+    border-radius: 2rem;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border: 1px solid #f1f4ff;
+    box-shadow: 0px 5px 15px 3px #f1f4ff;
+    margin-bottom: 1rem;
+}
+
+.search-bar::placeholder {
+    color: #babaca;
+}
+
+.poll-list-item {
+    border-radius: 1rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #ffffff;
+    border: 1px solid #f1f4ff;
+    box-shadow: 0px 5px 15px 3px #f1f4ff;
+}
+.poll-list-item a {
+    transition: 0.3s;
+}
+
+.poll-list-item:hover a {
+    color: #3d7afe;
+}
+
+.poll-list-item p {
+    color: #babaca;
+}
+
+/* enhancement */
+.poll-list-horizontal {
+    display: flex;
+    scroll-snap-type: x mandatory;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    padding-bottom: 1rem;
+}
+
+/* width */
+.scrollbar-custom::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.3rem;
+}
+
+/* Track */
+.scrollbar-custom::-webkit-scrollbar-track {
+    background: #fff;
+}
+
+/* Handle */
+.scrollbar-custom::-webkit-scrollbar-thumb {
+    background: #babaca;
+    border-radius: 1rem;
+}
+
+/* Handle on hover */
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+    /* background: #3d7afe; */
+    background: #282e3d;
+}
+
+.poll-list-horizontal .poll-list-item {
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    margin-right: 0.5rem;
+    width: calc(100% - 1.5rem);
+}
+
+.poll-list-horizontal .poll-list-item:last-of-type {
+    margin-right: 1.5rem;
+}
+
+@media screen and (min-width: 40rem) {
+    header {
+        padding: 3rem 2rem 0;
+        margin-left: 14rem;
+    }
+
+    main,
+    .horizontal-content {
+        padding: 0 2rem 3rem;
+        margin-left: 14rem;
+    }
+
+    .list-heading {
+        margin-top: 3rem;
+    }
+
+    .nav-bar {
+        width: 14rem;
+        height: 100vh;
+        left: 0;
+        top: 0;
+        padding: 2rem;
+        box-shadow: 0px 5px 15px 3px #f1f4ff;
+    }
+
+    .nav-bar ul {
+        flex-direction: column;
+    }
+
+    .nav-item a {
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .nav-logo {
+        display: block;
+    }
+
+    .nav-item span {
+        display: block;
+    }
+
+    .poll-list-horizontal {
+        flex-wrap: wrap;
+        scroll-snap-type: none;
+        overflow-x: visible;
+        padding-bottom: 0;
+    }
+
+    .poll-list-horizontal .poll-list-item {
+        margin-right: 0;
+        width: 100%;
+    }
+
+    .poll-list-horizontal .poll-list-item:last-of-type {
+        margin-right: 0;
+    }
+}

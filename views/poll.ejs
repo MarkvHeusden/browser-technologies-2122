@@ -1,0 +1,31 @@
+<%- include('./partials/head') %>
+<body>
+    <header>
+        <a href="/">terug</a>
+    </header>
+    <main>
+        <section>
+            <h1>Titel poll</h1>
+            <p>kies 1/meerdere antwoorden</p>
+            <form action="">
+                <ul>
+                    <li>
+                        <label><input type="radio" name="poll-answer" id="" />Antwoord</label>
+                    </li>
+                    <li>
+                        <label><input type="radio" name="poll-answer" id="" />Antwoord</label>
+                    </li>
+                    <li>
+                        <label><input type="radio" name="poll-answer" id="" />Antwoord</label>
+                    </li>
+                </ul>
+                <input type="submit" value="Stemmen" />
+            </form>
+            <div class="submit-buttons">
+                <a href="/result">resultaat</a>
+                <a href="">deel</a>
+            </div>
+        </section>
+    </main>
+</body>
+<%- include('./partials/foot') %>
