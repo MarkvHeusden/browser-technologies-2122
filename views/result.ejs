@@ -1,0 +1,26 @@
+<%- include('./partials/head') %>
+<body>
+    <header>
+        <a href="/poll/<%= poll.id %>">terug</a>
+    </header>
+    <main>
+        <section>
+            <h1><%= poll.title %></h1>
+            <p><%= poll.votes.length %> stemmen totaal</p>
+            <ul>
+                <% poll.answers.forEach((answerName) => { %>
+                <li>
+                    <p><%= answerName %></p>
+                    <p>
+                        <%= poll.votes.filter(x => x === answerName).length > 0 ? poll.votes.filter(x => x === answerName).length : 0 %>
+                        stem(men)
+                    </p>
+                </li>
+                <% })%>
+            </ul>
+
+            <a href="">deel</a>
+        </section>
+    </main>
+</body>
+<%- include('./partials/foot') %>

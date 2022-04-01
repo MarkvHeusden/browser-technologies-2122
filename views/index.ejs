@@ -1,61 +1,26 @@
 <%- include('./partials/head') %>
-<body class="scrollbar-custom">
+<body>
     <%- include('./partials/nav.ejs') %>
     <header>
         <h1>Recente polls</h1>
         <input class="search-bar" type="text" name="search" id="" placeholder="Zoeken" />
     </header>
     <main>
+        <% if (polls.length > 0) { %>
         <ul class="poll-list">
+            <% polls.forEach((poll) => { %>
             <li class="poll-list-item">
-                <a href="/poll/1">
-                    <h2>Poll 1</h2>
-                    <p>13 stemmen</p>
+                <a href="/poll/<%= poll.id %>">
+                    <h2><%= poll.title %></h2>
+                    <p><%= poll.votes.length %> stemmen</p>
                 </a>
             </li>
-            <li class="poll-list-item">
-                <a href="">
-                    <h2>Poll 1</h2>
-                    <p>13 stemmen</p>
-                </a>
-            </li>
-            <li class="poll-list-item">
-                <a href="">
-                    <h2>Poll 1</h2>
-                    <p>13 stemmen</p>
-                </a>
-            </li>
-            <li class="poll-list-item">
-                <a href="">
-                    <h2>Poll 1</h2>
-                    <p>13 stemmen</p>
-                </a>
-            </li>
-            <li class="poll-list-item">
-                <a href="">
-                    <h2>Poll 1</h2>
-                    <p>13 stemmen</p>
-                </a>
-            </li>
-            <li class="poll-list-item">
-                <a href="">
-                    <h2>Poll 1</h2>
-                    <p>13 stemmen</p>
-                </a>
-            </li>
-            <li class="poll-list-item">
-                <a href="">
-                    <h2>Poll 1</h2>
-                    <p>13 stemmen</p>
-                </a>
-            </li>
-            <li class="poll-list-item">
-                <a href="">
-                    <h2>Poll 1</h2>
-                    <p>13 stemmen</p>
-                </a>
-            </li>
+            <% })%>
         </ul>
+
+        <% } else {%>
+        <p>Geen polls gevonden!</p>
+        <% }%>
     </main>
 </body>
 <%- include('./partials/foot') %>

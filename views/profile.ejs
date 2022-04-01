@@ -1,49 +1,68 @@
 <%- include('./partials/head') %>
 <body>
     <%- include('./partials/nav.ejs') %>
-    <main class="horizontal-content">
-        <h1 class="list-heading">Mijn polls</h1>
-        <ul class="poll-list-horizontal scrollbar-custom">
-            <li class="poll-list-item">
-                <a href="">
-                    <h2>Poll 1</h2>
-                    <p>13 stemmen</p>
-                </a>
-            </li>
-            <li class="poll-list-item">
-                <a href="">
-                    <h2>Poll 1</h2>
-                    <p>13 stemmen</p>
-                </a>
-            </li>
-            <li class="poll-list-item">
-                <a href="">
-                    <h2>Poll 1</h2>
-                    <p>13 stemmen</p>
-                </a>
-            </li>
-        </ul>
-        <h2 class="list-heading">Mijn stemmen</h1>
-        <ul class="poll-list-horizontal scrollbar-custom">
-            <li class="poll-list-item">
-                <a href="">
-                    <h2>Poll 1</h2>
-                    <p>13 stemmen</p>
-                </a>
-            </li>
-            <li class="poll-list-item">
-                <a href="">
-                    <h2>Poll 1</h2>
-                    <p>13 stemmen</p>
-                </a>
-            </li>
-            <li class="poll-list-item">
-                <a href="">
-                    <h2>Poll 1</h2>
-                    <p>13 stemmen</p>
-                </a>
-            </li>
-        </ul>
+    <main>
+        <% if (concepts.length > 0) { %>
+            <section class="poll-container">
+                <h2 class="h1">Mijn concepten</h2>
+            <ul class="poll-list">
+                <% concepts.forEach((poll) => { %>
+                <li class="poll-list-item">
+                    <a href="/poll/<%= poll.id %>">
+                        <h2><%= poll.title %></h2>
+                        <p><%= poll.votes.length %> stemmen</p>
+                    </a>
+                </li>
+                <% })%>
+            </ul>
+            </section>
+            <% }%>
+        <section class="poll-container">
+            <h2 class="h1">Mijn polls</h1>
+                <ul class="poll-list">
+                    <li class="poll-list-item">
+                        <a href="">
+                            <h2>Poll 1</h2>
+                            <p>13 stemmen</p>
+                        </a>
+                    </li>
+                    <li class="poll-list-item">
+                        <a href="">
+                            <h2>Poll 1</h2>
+                            <p>13 stemmen</p>
+                        </a>
+                    </li>
+                    <li class="poll-list-item">
+                        <a href="">
+                            <h2>Poll 1</h2>
+                            <p>13 stemmen</p>
+                        </a>
+                    </li>
+                </ul>
+        </section>
+        <section class="poll-container">
+            <h2 class="h1">Mijn stemmen</h1>
+            <ul class="poll-list">
+                <li class="poll-list-item">
+                    <a href="">
+                        <h2>Poll 1</h2>
+                        <p>13 stemmen</p>
+                    </a>
+                </li>
+                <li class="poll-list-item">
+                    <a href="">
+                        <h2>Poll 1</h2>
+                        <p>13 stemmen</p>
+                    </a>
+                </li>
+                <li class="poll-list-item">
+                    <a href="">
+                        <h2>Poll 1</h2>
+                        <p>13 stemmen</p>
+                    </a>
+                </li>
+            </ul>
+        </section>
     </main>
 </body>
 <%- include('./partials/foot') %>

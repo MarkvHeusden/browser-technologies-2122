@@ -5,24 +5,23 @@
     </header>
     <main>
         <section>
-            <h1>Titel poll</h1>
-            <p>kies 1/meerdere antwoorden</p>
-            <form action="">
+            <h1><%= poll.title %></h1>
+            <p><%= poll.checkbox ? 'Kies meerdere antwoorden' : 'Kies 1 antwoord' %></p>
+            <form method="POST" action="/poll/<%= poll.id %>/vote-poll">
                 <ul>
+                    <% poll.answers.forEach((answer) => { %>
                     <li>
-                        <label><input type="radio" name="poll-answer" id="" />Antwoord</label>
+                        <label
+                            ><input type="<%= poll.checkbox ? 'checkbox' : 'radio' %>" value="<%= answer %>" name="vote" id="" <%=
+                            poll.checkbox ? '' : 'required' %> /><%= answer %></label
+                        >
                     </li>
-                    <li>
-                        <label><input type="radio" name="poll-answer" id="" />Antwoord</label>
-                    </li>
-                    <li>
-                        <label><input type="radio" name="poll-answer" id="" />Antwoord</label>
-                    </li>
+                    <% })%>
                 </ul>
                 <input type="submit" value="Stemmen" />
             </form>
             <div class="submit-buttons">
-                <a href="/result">resultaat</a>
+                <a href="/poll/<%= poll.id %>/result">resultaat</a>
                 <a href="">deel</a>
             </div>
         </section>

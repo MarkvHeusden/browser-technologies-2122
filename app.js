@@ -1,4 +1,5 @@
 import express from 'express'
+const { randomUUID } = await import('crypto')
 
 const app = express()
 const port = 5000
@@ -8,10 +9,14 @@ app.use(express.json())
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: true }))
 
+let polls = []
+let concepts = []
+
 app.get('/', (req, res) => {
     res.render('index', {
         name: 'index',
         title: 'Overzicht polls',
+        polls,
     })
 })
 
@@ -26,32 +31,73 @@ app.get('/profile', (req, res) => {
     res.render('profile', {
         name: 'profile',
         title: 'Mijn profiel',
+        concepts,
     })
 })
 
 app.get('/poll/:id', (req, res) => {
+    const poll = polls.find((poll) => poll.id == req.params.id)
     res.render('poll', {
-        title: 'Poll ' + req.params.id,
+        title: poll.title,
+        poll,
     })
 })
 
-// app.get('/scanning', (req, res) => {
-//     res.render('scanning')
-// })
+app.get('/poll/:id/result', (req, res) => {
+    const poll = polls.find((poll) => poll.id == req.params.id)
+    res.render('result', {
+        title: 'Resultaat' + poll.title,
+        poll,
+    })
+})
 
-// app.get('/product/:barcode', (req, res) => {
-//     getProductData(req.params.barcode)
-//         .then((productData) => res.render('product', { productData }))
-//         .catch((status) => res.render('error', { error: status }))
-// })
+app.post('/add-poll', (req, res) => {
+    polls.push({
+        id: randomUUID(),
+        title: req.body.title,
+        answers: req.body.answers,
+        votes: [],
+        checkbox: req.body.multiple ? true : false,
+    })
+    // const pollList = polls.reverse()
+    res.render('index', {
+        name: 'index',
+        title: 'Poll toegevoegd',
+        polls,
+    })
+})
 
-// app.post(['/scanning', '/product/:barcode'], (req, res) => {
-//     res.redirect('/product/' + req.body.searchBar)
-// })
+app.post('/save-poll', (req, res) => {
+    concepts.push({
+        id: randomUUID(),
+        title: req.body.title,
+        answers: req.body.answers,
+        votes: [],
+        checkbox: req.body.multiple ? true : false,
+    })
+    // const pollList = polls.reverse()
+    res.render('profile', {
+        name: 'profile',
+        title: 'Mijn profiel',
+        concepts,
+    })
+})
 
-// app.get('/offline', (req, res) => {
-//     res.render('error', { error: 'offline' })
-// })
+app.post('/poll/:id/vote-poll', (req, res) => {
+    const poll = polls.find((poll) => poll.id == req.params.id)
+    const vote = req.body.vote
+    if (vote) {
+        if (Array.isArray(vote)) {
+            poll.votes = poll.votes.concat(vote)
+        } else {
+            poll.votes.push(req.body.vote)
+        }
+    }
+    res.render('result', {
+        title: 'Resultaat' + poll.title,
+        poll,
+    })
+})
 
 app.listen(port, () => {
     console.log(`Example app listening on port http://localhost:${port}`)
