@@ -1,30 +1,33 @@
 <%- include('./partials/head') %>
 <body>
+    <%- include('./partials/nav.ejs') %>
     <header>
-        <a href="/">terug</a>
+        <div class="width-container">
+            <a class="back-btn" href="/">Terug naar overzicht</a>
+        </div>
     </header>
     <main>
-        <section>
-            <h1><%= poll.title %></h1>
-            <p><%= poll.checkbox ? 'Kies meerdere antwoorden' : 'Kies 1 antwoord' %></p>
-            <form method="POST" action="/poll/<%= poll.id %>/vote-poll">
-                <ul>
-                    <% poll.answers.forEach((answer) => { %>
-                    <li>
-                        <label
-                            ><input type="<%= poll.checkbox ? 'checkbox' : 'radio' %>" value="<%= answer %>" name="vote" id="" <%=
-                            poll.checkbox ? '' : 'required' %> /><%= answer %></label
-                        >
-                    </li>
-                    <% })%>
-                </ul>
-                <input type="submit" value="Stemmen" />
-            </form>
-            <div class="submit-buttons">
-                <a href="/poll/<%= poll.id %>/result">resultaat</a>
-                <a href="">deel</a>
-            </div>
-        </section>
+        <div class="width-container">
+            <section>
+                <h1><%= poll.title %></h1>
+                <p><%= poll.checkbox ? 'Kies meerdere antwoorden' : 'Kies 1 antwoord' %></p>
+                <form method="POST" class="vote-form" action="/poll/<%= poll.id %>/vote-poll">
+                    <ul>
+                        <% poll.answers.forEach((answer) => { %>
+                        <li>
+                            <label
+                                ><input type="<%= poll.checkbox ? 'checkbox' : 'radio' %>" value="<%= answer %>" name="vote" id="" <%=
+                                poll.checkbox ? '' : 'required' %> /><span><%= answer %></span></label
+                            >
+                        </li>
+                        <% })%>
+                    </ul>
+                    <button class="btn btn-prim" type="submit">Stemmen</button>
+                </form>
+                <a class="btn-result" href="/poll/<%= poll.id %>/result">Bekijk resultaat</a>
+                <%- include('./partials/share.ejs') %>
+            </section>
+        </div>
     </main>
 </body>
 <%- include('./partials/foot') %>

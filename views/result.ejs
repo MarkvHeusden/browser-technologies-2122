@@ -1,26 +1,48 @@
 <%- include('./partials/head') %>
 <body>
+    <%- include('./partials/nav.ejs') %>
     <header>
-        <a href="/poll/<%= poll.id %>">terug</a>
+        <div class="width-container">
+            <a class="back-btn" href="/poll/<%= poll.id %>">Terug naar poll</a>
+        </div>
     </header>
     <main>
-        <section>
-            <h1><%= poll.title %></h1>
-            <p><%= poll.votes.length %> stemmen totaal</p>
-            <ul>
-                <% poll.answers.forEach((answerName) => { %>
-                <li>
-                    <p><%= answerName %></p>
-                    <p>
-                        <%= poll.votes.filter(x => x === answerName).length > 0 ? poll.votes.filter(x => x === answerName).length : 0 %>
-                        stem(men)
-                    </p>
-                </li>
-                <% })%>
-            </ul>
+        <div class="width-container">
+            <section>
+                <h1><%= poll.title %></h1>
+                <ul class="result-container">
+                    <% poll.answers.forEach((answerName) => { %>
+                    <li>
+                        <div class="result-text">
+                            <p class="h2"><%= answerName %></p>
+                            <p>
+                                <%= poll.votes.filter(x => x === answerName).length > 0 ? poll.votes.filter(x => x === answerName).length :
+                                0 %> stem(men)
+                            </p>
+                        </div>
+                        <svg class="result-bar">
+                            <rect
+                                width="<%= poll.votes.filter(x => x === answerName).length / poll.votes.length * 100 %>%"
+                                height="32"
+                                fill="#3d7afe"
+                            ></rect>
+                            <% const percentage = Math.round(poll.votes.filter(x => x === answerName).length / poll.votes.length * 100 * 10)
+                            / 10 %> <% if (percentage >= 10) { %>
+                            <text text-anchor="end" x="<%= percentage - 1.5%>%" y="20" fill="#fff"><%= percentage %>%</text>
+                            <% } else if (percentage < 10) { %>
+                            <text text-anchor="start" x="<%= percentage + 1.5%>%" y="20" fill="#282e3d"><%= percentage %>%</text>
 
-            <a href="">deel</a>
-        </section>
+                            <%} else { %>
+                            <text text-anchor="start" x="<%= 1.5%>%" y="20" fill="#282e3d">0%</text>
+
+                            <% }%>
+                        </svg>
+                    </li>
+                    <% })%>
+                </ul>
+                <%- include('./partials/share.ejs') %>
+            </section>
+        </div>
     </main>
 </body>
 <%- include('./partials/foot') %>

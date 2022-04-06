@@ -27,6 +27,15 @@ app.get('/add', (req, res) => {
     })
 })
 
+app.get('/add/:id', (req, res) => {
+    const conceptPoll = concepts.find((poll) => poll.id == req.params.id)
+    res.render('add-concept', {
+        name: 'add',
+        title: 'Poll toevoegen',
+        conceptPoll,
+    })
+})
+
 app.get('/profile', (req, res) => {
     res.render('profile', {
         name: 'profile',
@@ -38,6 +47,7 @@ app.get('/profile', (req, res) => {
 app.get('/poll/:id', (req, res) => {
     const poll = polls.find((poll) => poll.id == req.params.id)
     res.render('poll', {
+        name: 'index',
         title: poll.title,
         poll,
     })
@@ -46,7 +56,8 @@ app.get('/poll/:id', (req, res) => {
 app.get('/poll/:id/result', (req, res) => {
     const poll = polls.find((poll) => poll.id == req.params.id)
     res.render('result', {
-        title: 'Resultaat' + poll.title,
+        name: 'index',
+        title: 'Resultaat: ' + poll.title,
         poll,
     })
 })
@@ -59,12 +70,7 @@ app.post('/add-poll', (req, res) => {
         votes: [],
         checkbox: req.body.multiple ? true : false,
     })
-    // const pollList = polls.reverse()
-    res.render('index', {
-        name: 'index',
-        title: 'Poll toegevoegd',
-        polls,
-    })
+    res.redirect('/')
 })
 
 app.post('/save-poll', (req, res) => {
@@ -75,12 +81,12 @@ app.post('/save-poll', (req, res) => {
         votes: [],
         checkbox: req.body.multiple ? true : false,
     })
-    // const pollList = polls.reverse()
-    res.render('profile', {
-        name: 'profile',
-        title: 'Mijn profiel',
-        concepts,
-    })
+    res.redirect('/profile')
+})
+
+app.post('/delete-concept/:id', (req, res) => {
+    concepts = concepts.filter((poll) => poll.id !== req.params.id)
+    res.redirect('/profile')
 })
 
 app.post('/poll/:id/vote-poll', (req, res) => {
@@ -93,10 +99,11 @@ app.post('/poll/:id/vote-poll', (req, res) => {
             poll.votes.push(req.body.vote)
         }
     }
-    res.render('result', {
-        title: 'Resultaat' + poll.title,
-        poll,
-    })
+    res.redirect('/poll/' + req.params.id + '/result')
+    // res.render('result', {
+    //     title: 'Resultaat' + poll.title,
+    //     poll,
+    // })
 })
 
 app.listen(port, () => {

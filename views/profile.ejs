@@ -1,68 +1,30 @@
 <%- include('./partials/head') %>
 <body>
     <%- include('./partials/nav.ejs') %>
+    <header>
+        <div class="width-container">
+            <h1>Mijn profiel</h1>
+        </div>
+    </header>
     <main>
-        <% if (concepts.length > 0) { %>
+        <div class="width-container">
+            <% if (concepts.length > 0) { %>
             <section class="poll-container">
-                <h2 class="h1">Mijn concepten</h2>
-            <ul class="poll-list">
-                <% concepts.forEach((poll) => { %>
-                <li class="poll-list-item">
-                    <a href="/poll/<%= poll.id %>">
-                        <h2><%= poll.title %></h2>
-                        <p><%= poll.votes.length %> stemmen</p>
-                    </a>
-                </li>
-                <% })%>
-            </ul>
-            </section>
-            <% }%>
-        <section class="poll-container">
-            <h2 class="h1">Mijn polls</h1>
+                <h2>Mijn concepten</h2>
                 <ul class="poll-list">
+                    <% concepts.forEach((poll) => { %>
                     <li class="poll-list-item">
-                        <a href="">
-                            <h2>Poll 1</h2>
-                            <p>13 stemmen</p>
+                        <a href="/add/<%= poll.id %>">
+                            <h2><%= poll.title %></h2>
                         </a>
                     </li>
-                    <li class="poll-list-item">
-                        <a href="">
-                            <h2>Poll 1</h2>
-                            <p>13 stemmen</p>
-                        </a>
-                    </li>
-                    <li class="poll-list-item">
-                        <a href="">
-                            <h2>Poll 1</h2>
-                            <p>13 stemmen</p>
-                        </a>
-                    </li>
+                    <% })%>
                 </ul>
-        </section>
-        <section class="poll-container">
-            <h2 class="h1">Mijn stemmen</h1>
-            <ul class="poll-list">
-                <li class="poll-list-item">
-                    <a href="">
-                        <h2>Poll 1</h2>
-                        <p>13 stemmen</p>
-                    </a>
-                </li>
-                <li class="poll-list-item">
-                    <a href="">
-                        <h2>Poll 1</h2>
-                        <p>13 stemmen</p>
-                    </a>
-                </li>
-                <li class="poll-list-item">
-                    <a href="">
-                        <h2>Poll 1</h2>
-                        <p>13 stemmen</p>
-                    </a>
-                </li>
-            </ul>
-        </section>
+            </section>
+            <% } else {%>
+            <p class="error">Geen concepten opgeslagen</p>
+            <% }%>
+        </div>
     </main>
 </body>
 <%- include('./partials/foot') %>

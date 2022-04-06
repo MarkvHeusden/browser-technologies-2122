@@ -2,25 +2,28 @@
 <body>
     <%- include('./partials/nav.ejs') %>
     <header>
-        <h1>Recente polls</h1>
-        <input class="search-bar" type="text" name="search" id="" placeholder="Zoeken" />
+        <div class="width-container">
+            <h1>Recente polls</h1>
+        </div>
     </header>
     <main>
-        <% if (polls.length > 0) { %>
-        <ul class="poll-list">
-            <% polls.forEach((poll) => { %>
-            <li class="poll-list-item">
-                <a href="/poll/<%= poll.id %>">
-                    <h2><%= poll.title %></h2>
-                    <p><%= poll.votes.length %> stemmen</p>
-                </a>
-            </li>
-            <% })%>
-        </ul>
+        <div class="width-container">
+            <% if (polls.length > 0) { %>
+            <ul class="poll-list">
+                <% polls.forEach((poll) => { %>
+                <li class="poll-list-item">
+                    <a href="/poll/<%= poll.id %>">
+                        <h2><%= poll.title %></h2>
+                        <p><%= poll.votes.length %> stemmen</p>
+                    </a>
+                </li>
+                <% })%>
+            </ul>
 
-        <% } else {%>
-        <p>Geen polls gevonden!</p>
-        <% }%>
+            <% } else {%>
+            <p class="error">Geen polls gevonden!</p>
+            <% }%>
+        </div>
     </main>
 </body>
 <%- include('./partials/foot') %>

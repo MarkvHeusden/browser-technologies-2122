@@ -1,0 +1,106 @@
+<%- include('./partials/head') %>
+<body>
+    <%- include('./partials/nav.ejs') %>
+    <header>
+        <div class="width-container">
+            <h1>Poll toevoegen</h1>
+        </div>
+    </header>
+    <main>
+        <div class="width-container">
+            <form method="POST">
+                <fieldset>
+                    <label class="h2" for="title">Titel</label>
+                    <input
+                        type="text"
+                        name="title"
+                        id="title"
+                        value="<%= conceptPoll.title ? conceptPoll.title : '' %>"
+                        placeholder="Type je vraag hier"
+                        required
+                    />
+                    <label class="h2" for="answer1">Antwoorden</label>
+                    <ul class="answer-container">
+                        <li>
+                            <input
+                                value="<%= conceptPoll.answers[0] ? conceptPoll.answers[0] : '' %>"
+                                type="text"
+                                name="answers"
+                                id="answer1"
+                                required
+                                placeholder="Antwoord 1"
+                            />
+                        </li>
+                        <li>
+                            <input
+                                value="<%= conceptPoll.answers[1] ? conceptPoll.answers[1] : '' %>"
+                                type="text"
+                                name="answers"
+                                id=""
+                                required
+                                placeholder="Antwoord 2"
+                            />
+                        </li>
+                        <% if (conceptPoll.answers[2]) { %>
+                        <li>
+                            <input
+                                value="<%= conceptPoll.answers[2] ? conceptPoll.answers[2] : '' %>"
+                                type="text"
+                                name="answers"
+                                id=""
+                                required
+                                placeholder="Antwoord 2"
+                            />
+                        </li>
+                        <% } %> <% if (conceptPoll.answers[3]) { %>
+                        <li>
+                            <input
+                                value="<%= conceptPoll.answers[3] ? conceptPoll.answers[3] : '' %>"
+                                type="text"
+                                name="answers"
+                                id=""
+                                required
+                                placeholder="Antwoord 2"
+                            />
+                        </li>
+                        <% } %> <% if (conceptPoll.answers[4]) { %>
+                        <li>
+                            <input
+                                value="<%= conceptPoll.answers[4] ? conceptPoll.answers[4] : '' %>"
+                                type="text"
+                                name="answers"
+                                id=""
+                                required
+                                placeholder="Antwoord 2"
+                            />
+                        </li>
+                        <% } %> <% if (conceptPoll.answers[5]) { %>
+                        <li>
+                            <input
+                                value="<%= conceptPoll.answers[5] ? conceptPoll.answers[5] : '' %>"
+                                type="text"
+                                name="answers"
+                                id=""
+                                required
+                                placeholder="Antwoord 2"
+                            />
+                        </li>
+                        <% } %>
+                    </ul>
+                    <div class="add-remove-buttons">
+                        <button id="add-answer" type="button" class="btn">Extra antwoord</button>
+                        <button id="remove-answer" type="button" class="btn">Verwijder antwoord</button>
+                    </div>
+                </fieldset>
+                <label class="checkbox-label"><input type="checkbox" name="multiple" id="" />Meerdere antwoorden mogelijk?</label>
+                <div class="submit-buttons">
+                    <button class="btn btn-prim" type="submit" formaction="/add-poll">Maak aan</button>
+                    <button class="btn" id="remove-concept" type="submit" formaction="/delete-concept/<%= conceptPoll.id %>" formnovalidate>
+                        Verwijder concept
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+<%- include('./partials/foot') %>
