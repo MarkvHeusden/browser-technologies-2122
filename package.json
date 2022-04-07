@@ -1,5 +1,5 @@
 {
-    "name": "poll",
+    "name": "node-poll",
     "version": "1.0.0",
     "description": "",
     "main": "app.js",
@@ -13,15 +13,15 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/MarkvHeusden/browser-technologies-2122.git"
+        "url": "git+https://github.com/MarkvHeusden/node-poll.git"
     },
     "keywords": [],
     "author": "",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/MarkvHeusden/browser-technologies-2122/issues"
+        "url": "https://github.com/MarkvHeusden/node-poll/issues"
     },
-    "homepage": "https://github.com/MarkvHeusden/browser-technologies-2122#readme",
+    "homepage": "https://github.com/MarkvHeusden/node-poll#readme",
     "type": "module",
     "dependencies": {
         "ejs": "^3.1.6",
