@@ -12,6 +12,7 @@
                 <fieldset>
                     <label class="h2" for="title">Titel</label>
                     <input
+                        class="form-validate"
                         type="text"
                         name="title"
                         id="title"
@@ -23,6 +24,7 @@
                     <ul class="answer-container">
                         <li>
                             <input
+                                class="form-validate"
                                 value="<%= conceptPoll.answers[0] ? conceptPoll.answers[0] : '' %>"
                                 type="text"
                                 name="answers"
@@ -33,6 +35,7 @@
                         </li>
                         <li>
                             <input
+                                class="form-validate"
                                 value="<%= conceptPoll.answers[1] ? conceptPoll.answers[1] : '' %>"
                                 type="text"
                                 name="answers"
@@ -44,50 +47,70 @@
                         <% if (conceptPoll.answers[2]) { %>
                         <li>
                             <input
-                                value="<%= conceptPoll.answers[2] ? conceptPoll.answers[2] : '' %>"
+                                class="form-validate"
+                                value="<%= conceptPoll.answers[2] %>"
                                 type="text"
                                 name="answers"
                                 id=""
                                 required
-                                placeholder="Antwoord 2"
+                                placeholder="Antwoord 3"
                             />
                         </li>
-                        <% } %> <% if (conceptPoll.answers[3]) { %>
+                        <% } else { %>
+                        <li class="js-hide">
+                            <input class="form-validate" type="text" name="answers" placeholder="Antwoord 3" />
+                        </li>
+                        <% }%> <% if (conceptPoll.answers[3]) { %>
                         <li>
                             <input
-                                value="<%= conceptPoll.answers[3] ? conceptPoll.answers[3] : '' %>"
+                                class="form-validate"
+                                value="<%= conceptPoll.answers[3] %>"
                                 type="text"
                                 name="answers"
                                 id=""
                                 required
-                                placeholder="Antwoord 2"
+                                placeholder="Antwoord 4"
                             />
                         </li>
-                        <% } %> <% if (conceptPoll.answers[4]) { %>
+                        <% } else { %>
+                        <li class="js-hide">
+                            <input class="form-validate" type="text" name="answers" placeholder="Antwoord 4" />
+                        </li>
+                        <% }%> <% if (conceptPoll.answers[4]) { %>
                         <li>
                             <input
-                                value="<%= conceptPoll.answers[4] ? conceptPoll.answers[4] : '' %>"
+                                class="form-validate"
+                                value="<%= conceptPoll.answers[4] %>"
                                 type="text"
                                 name="answers"
                                 id=""
                                 required
-                                placeholder="Antwoord 2"
+                                placeholder="Antwoord 5"
                             />
                         </li>
-                        <% } %> <% if (conceptPoll.answers[5]) { %>
+                        <% }else { %>
+                        <li class="js-hide">
+                            <input class="form-validate" type="text" name="answers" placeholder="Antwoord 5" />
+                        </li>
+                        <% }%> <% if (conceptPoll.answers[5]) { %>
                         <li>
                             <input
-                                value="<%= conceptPoll.answers[5] ? conceptPoll.answers[5] : '' %>"
+                                class="form-validate"
+                                value="<%= conceptPoll.answers[5] %>"
                                 type="text"
                                 name="answers"
                                 id=""
                                 required
-                                placeholder="Antwoord 2"
+                                placeholder="Antwoord 6"
                             />
                         </li>
-                        <% } %>
+                        <% } else { %>
+                        <li class="js-hide">
+                            <input class="form-validate" type="text" name="answers" placeholder="Antwoord 6" />
+                        </li>
+                        <% }%>
                     </ul>
-                    <div class="add-remove-buttons">
+                    <div class="add-remove-buttons hidden">
                         <button id="add-answer" type="button" class="btn">Extra antwoord</button>
                         <button id="remove-answer" type="button" class="btn">Verwijder antwoord</button>
                     </div>
@@ -102,5 +125,6 @@
             </form>
         </div>
     </main>
+    <script defer src="/js/main.js"></script>
 </body>
 <%- include('./partials/foot') %>

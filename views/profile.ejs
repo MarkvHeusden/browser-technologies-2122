@@ -15,7 +15,8 @@
                     <% concepts.forEach((poll) => { %>
                     <li class="poll-list-item">
                         <a href="/add/<%= poll.id %>">
-                            <h2><%= poll.title %></h2>
+                            <h2><%= poll.title ? poll.title : 'Geen titel' %></h2>
+                            <p><%= poll.answers.length %> antwoorden opgeslagen</p>
                         </a>
                     </li>
                     <% })%>

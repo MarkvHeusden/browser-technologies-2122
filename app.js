@@ -2,7 +2,7 @@ import express from 'express'
 const { randomUUID } = await import('crypto')
 
 const app = express()
-const port = 5000
+const port = process.env.PORT || 5000
 
 app.use(express.static('public'))
 app.use(express.json())
@@ -66,7 +66,7 @@ app.post('/add-poll', (req, res) => {
     polls.push({
         id: randomUUID(),
         title: req.body.title,
-        answers: req.body.answers,
+        answers: req.body.answers.filter((valid) => valid),
         votes: [],
         checkbox: req.body.multiple ? true : false,
     })
@@ -77,7 +77,7 @@ app.post('/save-poll', (req, res) => {
     concepts.push({
         id: randomUUID(),
         title: req.body.title,
-        answers: req.body.answers,
+        answers: req.body.answers.filter((valid) => valid),
         votes: [],
         checkbox: req.body.multiple ? true : false,
     })
@@ -100,10 +100,6 @@ app.post('/poll/:id/vote-poll', (req, res) => {
         }
     }
     res.redirect('/poll/' + req.params.id + '/result')
-    // res.render('result', {
-    //     title: 'Resultaat' + poll.title,
-    //     poll,
-    // })
 })
 
 app.listen(port, () => {
