@@ -125,6 +125,10 @@ main {
     display: none;
 }
 
+.nav-logo img {
+    width: 100%;
+}
+
 .nav-item {
     -webkit-box-flex: 1;
     flex: 1;
